@@ -1,9 +1,5 @@
 # md-converter (mdファイル変換ツール)
 
-<div align="center">
-  <img src="./public/window.svg" alt="md-converter logo" width="120" />
-</div>
-
 <h3 align="center">社外秘データでも安心。ブラウザで完結する完全無料のMarkdown変換ツール</h3>
 
 <div align="center">
@@ -76,4 +72,4 @@ MIT License
 
 ---
 
-© {new Date().getFullYear()} mdファイル変換ツール
+© 2026 mdファイル変換ツール
