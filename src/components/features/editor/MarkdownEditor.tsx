@@ -100,6 +100,7 @@ export function MarkdownEditor() {
               <Link
                 href="/tips"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
               >
                 <HelpCircle className="w-3.5 h-3.5" />
