@@ -1,6 +1,6 @@
-# md-converter (mdファイル変換ツール)
+# md-converter
 
-<h3 align="center">社外秘データでも安心。ブラウザで完結する完全無料のMarkdown変換ツール</h3>
+<h3 align="center">Secure, zero-server Markdown conversion right in your browser.</h3>
 
 <div align="center">
   <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-14-black" alt="Next.js" /></a>
@@ -11,65 +11,65 @@
 
 ---
 
-## 🌟 プロジェクトの概要
+## 🌟 Project Overview
 
-**md-converter** は、HTML、テキスト、CSVデータを即座にMarkdown（`.md`ファイル）フォーマットに変換するWebアプリケーションです。
+**md-converter** is a web-based client-side application that instantly converts HTML, text, and CSV data into correctly formatted Markdown (`.md`) files.
 
-「**サーバーへのデータ送信不要（完全クライアントサイド処理）**」を最大の設計思想とし、個人情報や業務上の機密データ（議事録など）を含む文章であっても、ローカルのブラウザメモリ上だけで安全・瞬時に変換を完結させることができます。SEO（`mdファイル変換` キーワード）とCore Web Vitalsのスコアを極限まで高めるため、Next.jsのApp Routerを用いた完全な静的サイト（Static Site Generation）として構築されています。
+Built with a strict **"zero-server data transmission"** philosophy, all text processing happens entirely within the local browser memory. This guarantees absolute privacy and security, making it perfectly safe for converting highly confidential business documents, meeting minutes, or files containing personal information. It is engineered as a purely Static Site Generation (SSG) app using Next.js App Router to achieve maximum Core Web Vitals scores and SEO ranking.
 
-## ✨ 主な機能
+## ✨ Key Features
 
-- 🔒 **完全ローカル処理**: クライアントサイドのJavaScriptのみで完結。データが外部へ送信されるログやリスクはゼロです。
-- ⚡ **超高速リアルタイム変換**: 入力と同時にMarkdownコードとプレビューが表示されます。
-- 📂 **ドラッグ＆ドロップ対応**: `.html`, `.csv`, `.txt` ファイルを画面にドロップするだけで即座に読み込み＆自動変換します。
-- 🤖 **生成AI（プロンプト）向け最適化**: ChatGPTやClaudeといったLLMへ情報を渡す際の、最適なフォーマットへの整理（構造化）に役立ちます。
-- 💡 **ビギナー向けLint機能搭載**: 初心者が間違えやすいMarkdown構文（見出しのスペース抜け等）をリアルタイムで検知し、優しくサジェストします。
-- 📱 **レスポンシブ＆ダークモード対応**: スマホからでも快適に操作可能。OSの設定に合わせたダークモードをデフォルトでサポートします（Tailwind CSS）。
+- 🔒 **100% Local Processing**: Everything runs client-side via JavaScript. Zero backend API calls, zero data retention, zero risk of data leaks.
+- ⚡ **Instant Real-time Conversion**: See your Markdown code and rendered visual preview update instantly as you type or paste.
+- 📂 **Drag & Drop Support**: Toss your `.html`, `.csv`, or `.txt` files directly into the browser to read and convert them automatically using the HTML5 File API.
+- 🤖 **Optimized for Generative AI**: Instantly clean up messy web text into semantic Markdown arrays—the ideal format for feeding high-quality context into LLMs like ChatGPT or Claude.
+- 💡 **Built-in Beginner Linter**: Features a real-time, non-intrusive regex checker that detects common Markdown syntax errors (like missing spaces after a heading `#`) and gently suggests corrections.
+- 📱 **Responsive & Dark Mode**: Fully responsive UI powered by Tailwind CSS with automatic system dark mode detection out of the box.
 
-## 🛠️ 技術スタック
+## 🛠️ Tech Stack
 
-- **フレームワーク**: Next.js 16.1 (App Router)
-- **言語**: TypeScript
-- **スタイリング**: Tailwind CSS, shadcn/ui
-- **アイコン**: Lucide React
-- **マークダウン変換**: Turndown
-- **プレビュー描画**: React Markdown
-- **インフラ**: Vercel (Edge CDN) ※想定
+- **Framework**: Next.js 16.1 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS, shadcn/ui
+- **Icons**: Lucide React
+- **Markdown Conversion**: Turndown
+- **Preview Render**: React Markdown
+- **Deployment**: Ready for Vercel/Edge CDN
 
-## 🚀 ローカル環境での動かし方
+## 🚀 Getting Started
 
-このリポジトリを手元にクローンし、開発サーバーを立ち上げる手順です。
+To run this project locally:
 
 ```bash
-# リポジトリのクローン
-git clone https://github.com/あなたのユーザー名/md-converter.git
+# Clone the repository
+git clone https://github.com/YourUsername/md-converter.git
 
-# ディレクトリへ移動
+# Navigate into the directory
 cd md-converter
 
-# パッケージのインストール
+# Install dependencies
 npm install
 
-# 開発サーバーの起動 (localhost:3000)
+# Start the development server (localhost:3000)
 npm run dev
 ```
 
-## 📈 SEOアーキテクチャの特徴
+## 📈 SEO & Architecture Highlights
 
-当プロジェクトは、技術ブログやツールサイトの知見に基づき、徹底したSEO対策（内部対策）が施されています。
+This project implements advanced on-page SEO techniques to capture high-intent search traffic for keyword conversions:
 
-- **静的なHTML出力 (SSG)**: クローラーが即座にコンテンツを読み取れるよう、ゼロAPIルートでビルド。
-- **セマンティックなマークアップ**: 正確な`<article>`, `<section>`, `<h1-3>` タグの定義。
-- **JSON-LD (構造化データ)**: FAQセクションに Schema.org 仕様の構造化データを埋め込み、Googleの「リッチリザルト（よくある質問）」面をハックします。
-- **ロングテールキーワード戦略**: `/tips`（Markdownの書き方チートシート）ページを別ルートで切り出し、「Markdown 書き方」などの関連クエリからの流入を狙います。
-- **リンクジュースの最適化**: OSSライセンスページへのリンクをフッター最下部にのみ配置し、ツール本体へのページランク（評価）の分散を防ぎ、さらに `noindex` を設定することでカニバリゼーションと重複コンテンツペナルティを回避しています。
+- **Static HTML Output (SSG)**: Zero API routes mean search engine crawlers can instantly index pre-rendered DOMs.
+- **Semantic Markup**: Proper utilization of `<article>`, `<section>`, and hierarchical `<h1-3>` tags.
+- **JSON-LD Structured Data**: Injects Schema.org metadata into the FAQ sections to dominate Google's "Rich Results" panels.
+- **Long-tail Content Strategy**: Includes a dedicated `/tips` route (Markdown Cheat Sheet) to capture adjacent beginner search queries.
+- **Link Juice Sculpting**: Links to the mandatory Open Source OSS Licenses page exist _only_ in the footer. That page strictly implements `<meta name="robots" content="noindex">` to completely avoid duplicate content penalties and preserve domain authority.
 
-## 📜 ライセンス
+## 📜 License
 
 MIT License
 
-このプロジェクトはOSSとして公開されています。詳細については [LICENSE](./LICENSE) をご覧ください。
+This project is open-source. For more details, see [LICENSE](./LICENSE).
 
 ---
 
-© 2026 mdファイル変換ツール
+© 2026 md-converter
