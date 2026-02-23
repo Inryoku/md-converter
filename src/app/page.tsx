@@ -12,12 +12,11 @@ export default function Home() {
             <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-4">
               瞬時に
               <span className="text-blue-600 dark:text-blue-400">
-                mdファイル
+                mdファイル化
               </span>
-              へ変換
             </h1>
             <p className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-              HTML、テキスト、CSVをブラウザ上で安全＆超高速にMarkdown化。
+              HTML、テキスト、CSVからブラウザ上で安全＆超高速に.mdファイルを作成。
               <br />
               <span className="font-semibold text-blue-700 dark:text-blue-400">
                 【社外秘データでも安心】

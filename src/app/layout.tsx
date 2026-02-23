@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
-
 export const metadata: Metadata = {
   title:
-    "【登録不要・安全】mdファイル変換ツール | ブラウザ上で即座にMarkdown化",
+    "【登録不要・安全】mdファイル化ツール | テキストやCSVを一瞬で.mdにして保存",
   description:
-    "テキストやHTMLなどを瞬時にMarkdown（mdファイル）へ変換する無料ツールです。入力したデータは外部サーバーに送信されず、お使いの端末内だけで安全に処理されるため、社外秘データや個人情報でも情報漏洩の心配なく安心してお使いいただけます。会員登録・インストール不要です。",
+    "テキストやHTML、CSVなどを瞬時に.mdファイル（Markdown）へ変換してダウンロードできる無料ツールです。入力したデータは外部サーバーに送信されず、お使いの端末内だけで安全に処理されるため、社外秘データや個人情報でも情報漏洩の心配なく安心してお使いいただけます。会員登録・インストール不要です。",
   keywords: [
     "mdファイル変換",
     "Markdown",
@@ -28,11 +25,11 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title:
-      "【登録不要・安全】mdファイル変換ツール | ブラウザ上で即座にMarkdown化",
+      "【登録不要・安全】mdファイル化ツール | テキストやCSVを一瞬で.mdにして保存",
     description:
-      "テキストやHTMLなどを瞬時にMarkdown（mdファイル）へ変換。データは外部サーバーに送信されず端末内で完結するため、情報漏洩の心配なく安全にお使いいただけます。",
+      "テキストやHTMLなどを瞬時に.mdファイルへ変換。データは外部サーバーに送信されず端末内で完結するため、情報漏洩の心配なく安全にダウンロードいただけます。",
     url: "https://md-converter-eta.vercel.app",
-    siteName: "mdファイル変換ツール",
+    siteName: "mdファイル化ツール",
     locale: "ja_JP",
     type: "website",
   },
@@ -48,9 +45,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body
-        className={`${inter.className} bg-slate-50 text-slate-900 antialiased selection:bg-blue-200`}
-      >
+      <body className="font-sans bg-slate-50 text-slate-900 antialiased selection:bg-blue-200">
         <div className="min-h-screen flex flex-col">
           <Header />
           <main className="grow pb-24">{children}</main>
