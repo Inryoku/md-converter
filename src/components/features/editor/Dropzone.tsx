@@ -17,16 +17,22 @@ export function Dropzone({ onConvert }: DropzoneProps) {
   const processFile = useCallback(
     (file: File) => {
       setError(null);
-      const validTypes = ["text/plain", "text/html", "text/csv"];
+      const validTypes = [
+        "text/plain",
+        "text/html",
+        "text/csv",
+        "text/tab-separated-values",
+        "text/markdown",
+      ];
       const extension = file.name.split(".").pop()?.toLowerCase();
 
       // Check extension or mime type
       if (
         !validTypes.includes(file.type) &&
-        !["txt", "html", "csv"].includes(extension || "")
+        !["txt", "html", "csv", "tsv", "md"].includes(extension || "")
       ) {
         setError(
-          "サポートされていないファイル形式です。.txt, .html, または.csvファイルをアップロードしてください。",
+          "サポートされていないファイル形式です。.txt, .html, .csv, .tsv, または.mdファイルをアップロードしてください。",
         );
         return;
       }
@@ -40,7 +46,14 @@ export function Dropzone({ onConvert }: DropzoneProps) {
           if (file.type === "text/html" || extension === "html") {
             markdown = htmlToMd(text);
           } else if (file.type === "text/csv" || extension === "csv") {
-            markdown = csvToMd(text);
+            markdown = csvToMd(text, ",");
+          } else if (
+            file.type === "text/tab-separated-values" ||
+            extension === "tsv"
+          ) {
+            markdown = csvToMd(text, "\t");
+          } else if (extension === "md") {
+            markdown = text; // directly output markdown
           } else {
             markdown = txtToMd(text);
           }
@@ -105,13 +118,13 @@ export function Dropzone({ onConvert }: DropzoneProps) {
           クリックしてアップロード、またはファイルをドラッグ＆ドロップ
         </p>
         <p className="text-sm text-slate-500 dark:text-slate-400">
-          対応形式: .txt, .html, .csv
+          対応形式: .txt, .html, .csv, .tsv, .md
         </p>
         <input
           id="file-upload"
           type="file"
           className="hidden"
-          accept=".txt,.html,.csv,text/plain,text/html,text/csv"
+          accept=".txt,.html,.csv,.tsv,.md,text/plain,text/html,text/csv,text/tab-separated-values,text/markdown"
           onChange={handleFileInput}
         />
       </div>
