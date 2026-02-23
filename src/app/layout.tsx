@@ -24,14 +24,14 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "mdファイル変換ツール" }],
   alternates: {
-    canonical: "https://md-converter.example.com", // In reality, this would be the production domain
+    canonical: "https://md-converter-eta.vercel.app",
   },
   openGraph: {
     title:
       "【登録不要・安全】mdファイル変換ツール | ブラウザ上で即座にMarkdown化",
     description:
       "テキストやHTMLなどを瞬時にMarkdown（mdファイル）へ変換。データは外部サーバーに送信されず端末内で完結するため、情報漏洩の心配なく安全にお使いいただけます。",
-    url: "https://md-converter.example.com",
+    url: "https://md-converter-eta.vercel.app",
     siteName: "mdファイル変換ツール",
     locale: "ja_JP",
     type: "website",
