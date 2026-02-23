@@ -7,7 +7,15 @@ import rehypeRaw from "rehype-raw";
 import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
-import { AlertCircle, HelpCircle } from "lucide-react";
+import {
+  AlertCircle,
+  HelpCircle,
+  FileText,
+  Eye,
+  Code2,
+  RefreshCw,
+  SquareArrowRightEnter,
+} from "lucide-react";
 import Link from "next/link";
 import { Dropzone } from "./Dropzone";
 import { Toolbar } from "./Toolbar";
@@ -110,7 +118,8 @@ export function MarkdownEditor() {
       {/* Top section: Upload or Paste */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="flex flex-col gap-2">
-          <h2 className="text-lg font-semibold tracking-tight">
+          <h2 className="flex items-center gap-2 text-lg font-semibold tracking-tight">
+            <SquareArrowRightEnter className="w-5 h-5 text-blue-500" />
             1. テキスト入力 / ファイルアップロード
           </h2>
           <Dropzone onConvert={handleConvertedFromDropzone} />
@@ -118,7 +127,7 @@ export function MarkdownEditor() {
             <div className="absolute inset-0 flex items-center">
               <span className="w-full border-t border-slate-200 dark:border-slate-800" />
             </div>
-            <div className="relative flex justify-center text-xs uppercase">
+            <div className="relative flex justify-center text-xs">
               <span className="bg-background px-2 text-muted-foreground">
                 またはMarkdown（テキスト）を直接記述 / 編集
               </span>
@@ -148,7 +157,8 @@ export function MarkdownEditor() {
         {/* Right section: Result / Preview */}
         <div className="flex flex-col gap-2">
           <div className="flex justify-between items-end">
-            <h2 className="text-lg font-semibold tracking-tight">
+            <h2 className="flex items-center gap-2 text-lg font-semibold tracking-tight">
+              <FileText className="w-5 h-5 text-indigo-500" />
               2. 変換結果 (Markdown)
             </h2>
             <Toolbar markdown={markdown} filename={getDownloadFilename()} />
@@ -175,8 +185,20 @@ export function MarkdownEditor() {
             className="w-full grow flex flex-col mt-2"
           >
             <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="preview">プレビュー</TabsTrigger>
-              <TabsTrigger value="code">Markdownソース</TabsTrigger>
+              <TabsTrigger
+                value="preview"
+                className="flex flex-row items-center gap-2"
+              >
+                <Eye className="w-4 h-4" />
+                プレビュー
+              </TabsTrigger>
+              <TabsTrigger
+                value="code"
+                className="flex flex-row items-center gap-2"
+              >
+                <Code2 className="w-4 h-4" />
+                Markdownソース
+              </TabsTrigger>
             </TabsList>
 
             <TabsContent value="preview" className="grow">

@@ -73,7 +73,7 @@ export function GuideSection() {
                   <FileCode2 className="w-5 h-5" />
                 </div>
                 <div className="font-mono text-sm text-slate-600 dark:text-slate-300">
-                  converted.md
+                  markdown.md
                 </div>
               </div>
               <div className="space-y-2">
