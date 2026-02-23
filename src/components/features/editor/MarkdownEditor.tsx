@@ -3,13 +3,14 @@
 import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
+import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { AlertCircle, HelpCircle } from "lucide-react";
 import Link from "next/link";
 import { Dropzone } from "./Dropzone";
 import { Toolbar } from "./Toolbar";
-import { htmlToMd } from "@/lib/convert/htmlToMd";
 
 export function MarkdownEditor() {
   const [inputText, setInputText] = useState("");
@@ -53,15 +54,10 @@ export function MarkdownEditor() {
       return;
     }
 
-    const hasHtmlTags = /<[a-z][\s\S]*>/i.test(text);
-    let newMd = "";
-    if (hasHtmlTags) {
-      newMd = htmlToMd(text);
-    } else {
-      newMd = text;
-    }
-    setMarkdown(newMd);
-    checkSyntax(newMd);
+    // The textarea now acts purely as a raw Markdown editor.
+    // It no longer attempts to auto-convert HTML, preserving user-intended inline tags.
+    setMarkdown(text);
+    checkSyntax(text);
   };
 
   const handleConvertedFromDropzone = (md: string) => {
@@ -85,13 +81,13 @@ export function MarkdownEditor() {
             </div>
             <div className="relative flex justify-center text-xs uppercase">
               <span className="bg-background px-2 text-muted-foreground">
-                またはテキスト/HTMLを直接貼り付け
+                またはMarkdown（テキスト）を直接記述 / 編集
               </span>
             </div>
           </div>
           <div className="relative">
             <Textarea
-              placeholder="ここにHTMLやテキストを貼り付けてください..."
+              placeholder="ここにMarkdownやテキストを入力して編集できます..."
               className="min-h-[300px] mt-2 font-mono text-sm resize-y"
               value={inputText}
               onChange={handleInputChange}
@@ -147,7 +143,29 @@ export function MarkdownEditor() {
             <TabsContent value="preview" className="grow">
               <div className="border rounded-md p-4 min-h-[500px] h-full overflow-y-auto bg-slate-50 dark:bg-slate-900/50 prose prose-slate dark:prose-invert max-w-none prose-table:border-collapse prose-th:border prose-th:border-slate-300 prose-td:border prose-td:border-slate-300 dark:prose-th:border-slate-700 dark:prose-td:border-slate-700 prose-th:bg-slate-100 dark:prose-th:bg-slate-800 prose-th:p-3 prose-td:p-3">
                 {markdown ? (
-                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    rehypePlugins={[
+                      rehypeRaw,
+                      [
+                        rehypeSanitize,
+                        {
+                          ...defaultSchema,
+                          attributes: {
+                            ...defaultSchema.attributes,
+                            span: [
+                              ...(defaultSchema.attributes?.span || []),
+                              "style",
+                            ],
+                            div: [
+                              ...(defaultSchema.attributes?.div || []),
+                              "style",
+                            ],
+                          },
+                        },
+                      ],
+                    ]}
+                  >
                     {markdown}
                   </ReactMarkdown>
                 ) : (
