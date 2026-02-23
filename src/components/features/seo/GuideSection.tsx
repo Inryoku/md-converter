@@ -8,6 +8,7 @@ import {
   FileText,
   Sheet,
   ShieldCheck,
+  ExternalLink,
 } from "lucide-react";
 
 export function GuideSection() {
@@ -175,6 +176,20 @@ export function GuideSection() {
               <br className="hidden sm:block" />
               会議の議事録や個人情報を含む業務データであっても、情報漏洩のリスクゼロで安全にお使いいただけます。
             </p>
+            <div className="mt-4 pt-4 border-t border-blue-200/50 dark:border-blue-800/50 text-sm text-slate-600 dark:text-slate-400">
+              💡
+              当ツールの変換処理ロジックはすべてオープンソースとして公開しています。通信が発生しない完全なクライアントサイド実装であることは、
+              <a
+                href="https://github.com/Inryoku/md-converter"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors underline underline-offset-2"
+              >
+                GitHubのソースコード
+                <ExternalLink className="w-3 h-3" />
+              </a>
+              からご確認いただけます。
+            </div>
           </div>
         </div>
       </section>
