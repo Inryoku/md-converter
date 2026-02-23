@@ -145,7 +145,7 @@ export function MarkdownEditor() {
             </TabsList>
 
             <TabsContent value="preview" className="grow">
-              <div className="border rounded-md p-4 min-h-[500px] h-full overflow-y-auto bg-slate-50 dark:bg-slate-900/50 prose prose-slate dark:prose-invert max-w-none">
+              <div className="border rounded-md p-4 min-h-[500px] h-full overflow-y-auto bg-slate-50 dark:bg-slate-900/50 prose prose-slate dark:prose-invert max-w-none prose-table:border-collapse prose-th:border prose-th:border-slate-300 prose-td:border prose-td:border-slate-300 dark:prose-th:border-slate-700 dark:prose-td:border-slate-700 prose-th:bg-slate-100 dark:prose-th:bg-slate-800 prose-th:p-3 prose-td:p-3">
                 {markdown ? (
                   <ReactMarkdown remarkPlugins={[remarkGfm]}>
                     {markdown}
