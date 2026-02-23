@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { AlertCircle, HelpCircle } from "lucide-react";
@@ -145,7 +146,9 @@ export function MarkdownEditor() {
             <TabsContent value="preview" className="grow">
               <div className="border rounded-md p-4 min-h-[500px] h-full overflow-y-auto bg-slate-50 dark:bg-slate-900/50 prose prose-slate dark:prose-invert max-w-none">
                 {markdown ? (
-                  <ReactMarkdown>{markdown}</ReactMarkdown>
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {markdown}
+                  </ReactMarkdown>
                 ) : (
                   <span className="text-slate-400 italic">
                     変換結果のプレビューがここに表示されます...
