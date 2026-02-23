@@ -7,7 +7,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "【完全無料】mdファイル変換ツール | ブラウザ上で即座にMarkdown化",
+  title:
+    "【登録不要・安全】mdファイル変換ツール | ブラウザ上で即座にMarkdown化",
   description:
     "テキストやHTMLなどを瞬時にMarkdown（mdファイル）へ変換する無料ツールです。入力したデータは外部サーバーに送信されず、お使いの端末内だけで安全に処理されるため、社外秘データや個人情報でも情報漏洩の心配なく安心してお使いいただけます。会員登録・インストール不要です。",
   keywords: [
@@ -26,7 +27,8 @@ export const metadata: Metadata = {
     canonical: "https://md-converter.example.com", // In reality, this would be the production domain
   },
   openGraph: {
-    title: "【完全無料】mdファイル変換ツール | ブラウザ上で即座にMarkdown化",
+    title:
+      "【登録不要・安全】mdファイル変換ツール | ブラウザ上で即座にMarkdown化",
     description:
       "テキストやHTMLなどを瞬時にMarkdown（mdファイル）へ変換。データは外部サーバーに送信されず端末内で完結するため、情報漏洩の心配なく安全にお使いいただけます。",
     url: "https://md-converter.example.com",
