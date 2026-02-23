@@ -22,6 +22,15 @@ export function Footer() {
           >
             ライセンス
           </Link>
+          <span className="text-slate-300 dark:text-slate-700">|</span>
+          <a
+            href="https://github.com/Inryoku/md-converter"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
+          >
+            GitHub
+          </a>
         </div>
         <p className="mt-4 text-xs text-slate-400 dark:text-slate-600 max-w-lg">
           このツールはすべてお使いのブラウザ上で動作します。入力されたテキストやファイルなどのデータが外部サーバーに送信されることは一切ありません。

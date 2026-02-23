@@ -1,4 +1,3 @@
-import { Github } from "lucide-react";
 import Link from "next/link";
 
 export function Header() {
@@ -17,15 +16,6 @@ export function Header() {
           >
             Markdownの書き方
           </Link>
-          <a
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
-            aria-label="GitHub Repository"
-          >
-            <Github className="w-5 h-5" />
-          </a>
         </nav>
       </div>
     </header>
