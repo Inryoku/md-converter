@@ -15,6 +15,7 @@ import { Toolbar } from "./Toolbar";
 export function MarkdownEditor() {
   const [inputText, setInputText] = useState("");
   const [markdown, setMarkdown] = useState("");
+  const [originFilename, setOriginFilename] = useState<string | null>(null);
   const [syntaxIssues, setSyntaxIssues] = useState<string[]>([]);
 
   // Simple Markdown Linter for beginners
@@ -51,6 +52,7 @@ export function MarkdownEditor() {
     if (!text) {
       setMarkdown("");
       setSyntaxIssues([]);
+      setOriginFilename(null); // ルール4: 全消しされたら元のファイル記憶をリセット
       return;
     }
 
@@ -60,10 +62,47 @@ export function MarkdownEditor() {
     checkSyntax(text);
   };
 
-  const handleConvertedFromDropzone = (md: string) => {
+  const handleConvertedFromDropzone = (md: string, filename?: string) => {
     setMarkdown(md);
     setInputText(md); // show the md in the input as well so they can edit it
+    if (filename) setOriginFilename(filename);
     checkSyntax(md);
+  };
+
+  const getDownloadFilename = () => {
+    // ルール1 & 3: ドロップされたファイル由来の場合はその名前の拡張子を変えるだけ
+    if (originFilename) {
+      const nameWithoutExt = originFilename.includes(".")
+        ? originFilename.substring(0, originFilename.lastIndexOf("."))
+        : originFilename;
+      return `${nameWithoutExt}.md`;
+    }
+
+    // ルール2 & 4: テキスト直打ち、または全消し後
+    if (!inputText.trim()) {
+      const d = new Date();
+      const formattedDate = `${d.getFullYear()}${(d.getMonth() + 1).toString().padStart(2, "0")}${d.getDate().toString().padStart(2, "0")}`;
+      return `markdown_${formattedDate}.md`;
+    }
+
+    const lines = inputText
+      .split("\n")
+      .filter((line) => line.trim().length > 0);
+    if (lines.length > 0) {
+      let firstLine = lines[0].replace(/^#+\s*/, "").trim(); // 見出し記号を削除
+      if (firstLine) {
+        firstLine = firstLine.replace(/[\/\\?%*:|"<>]/g, "-"); // Web安全なファイル名に変換
+        if (firstLine.length > 15) {
+          firstLine = firstLine.substring(0, 15).trim(); // 最初の15文字までに制限
+        }
+        return `${firstLine}.md`;
+      }
+    }
+
+    // fallback
+    const d = new Date();
+    const formattedDate = `${d.getFullYear()}${(d.getMonth() + 1).toString().padStart(2, "0")}${d.getDate().toString().padStart(2, "0")}`;
+    return `markdown_${formattedDate}.md`;
   };
 
   return (
@@ -112,7 +151,7 @@ export function MarkdownEditor() {
             <h2 className="text-lg font-semibold tracking-tight">
               2. 変換結果 (Markdown)
             </h2>
-            <Toolbar markdown={markdown} />
+            <Toolbar markdown={markdown} filename={getDownloadFilename()} />
           </div>
 
           {syntaxIssues.length > 0 && (

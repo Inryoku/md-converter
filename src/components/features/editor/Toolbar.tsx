@@ -6,9 +6,10 @@ import { Copy, Download, Check } from "lucide-react";
 
 interface ToolbarProps {
   markdown: string;
+  filename?: string;
 }
 
-export function Toolbar({ markdown }: ToolbarProps) {
+export function Toolbar({ markdown, filename = "converted.md" }: ToolbarProps) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -28,7 +29,7 @@ export function Toolbar({ markdown }: ToolbarProps) {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "converted.md";
+    a.download = filename;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);

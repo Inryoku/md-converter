@@ -7,7 +7,7 @@ import { csvToMd } from "@/lib/convert/csvToMd";
 import { txtToMd } from "@/lib/convert/txtToMd";
 
 interface DropzoneProps {
-  onConvert: (markdown: string) => void;
+  onConvert: (markdown: string, originalFilename?: string) => void;
 }
 
 export function Dropzone({ onConvert }: DropzoneProps) {
@@ -58,7 +58,7 @@ export function Dropzone({ onConvert }: DropzoneProps) {
             markdown = txtToMd(text);
           }
 
-          onConvert(markdown);
+          onConvert(markdown, file.name);
         } catch (err) {
           setError("変換処理中にエラーが発生しました。");
           console.error(err);
